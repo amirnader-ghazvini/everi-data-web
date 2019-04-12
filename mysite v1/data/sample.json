@@ -1,0 +1,61 @@
+{
+  "update": "03/27/2019",
+  "type": "entities",
+  "list": [
+    {
+      "str.id": "United_States",
+      "synonyms": [["USA", 1.0],["United_States_of_America", 1.0],["U.S.", 1.0]],
+      "type": "Country",
+      "Country.Related.Attribute": [["Flag", 1.0], ["Population",1.0]],
+      "Flag": {"URL":"https://everipedia-storage.s3-accelerate.amazonaws.com/ProfilePics/69693434750-1491955172.png?nocache=7331107b-4",
+               "type":"Image"},
+      "Everipedia.Page": 
+        {"URL":"https://everipedia.org/wiki/lang_en/United_States/",
+         "IPFS":"QmNLgaK9RaGtATcQysdpQiH48DxYJnwsA6SyYtGTLheERm"},
+      "score": 1.0
+    },
+    {
+      "str.id": "US_Army",
+      "synonyms": [["USA Army", 1.0],["United_States_of_America Army", 1.0],["U.S. Army", 1.0]],
+      "type": [["Country", 0.5], ["Organization", 0.6],["Animal", 2.0]],
+      "Country.Related.Attribute": [["Country", 1.0]],
+      "Organization.Related.Attribute": [["Role", 1.0]],
+      "Everipedia.Page": 
+        {"URL":"https://everipedia.org/wiki/lang_en/United_States_Army/",
+         "IPFS":"QmcSzbHemfQ85CtVunGsAetE34PZwh1n9vUMKxLvb4jheT"},
+      "score": 1.0
+    },
+    {
+      "str.id": "US_Navy",
+      "synonyms": [["USA Navy", 1.0],["United_States_of_America Navy", 1.0],["U.S. Navy", 1.0]],
+      "type": [["Country", 0.5], ["Organization", 0.6]],
+      "Country.Related.Attribute": [["Country", 1.0]],
+      "Organization.Related.Attribute": [["Role", 1.0]],
+      "Everipedia.Page": 
+        {"URL":"https://everipedia.org/wiki/lang_en/United_States_Navy/",
+         "IPFS":"QmezYfy82b74Hyj6zsTjDxhv8bmz3z2cNQ96j4xqG6CWff"},
+      "score": 1.0
+    },
+    {
+      "str.id": "US_Air_Force",
+      "synonyms": [["USA Air_Force", 1.0],["United_States_of_America Air_Force", 1.0],["U.S. Air_Force", 1.0]],
+      "type": [["Country", 0.5], ["Organization", 0.6]],
+      "Country.Related.Attribute": [["Country", 1.0]],
+      "Organization.Related.Attribute": [["Role", 1.0]],
+      "Everipedia.Page": 
+        {"URL":"https://everipedia.org/wiki/lang_en/United_States_Air_Force/",
+         "IPFS":"QmYmzh1n3HBnNMk3dvD2gv2JKCrviPRpKXpKNfA4p2uDvP"},
+      "score": 1.0
+    },                                
+    {
+      "str.id": "Made_in_U.S.A",
+      "synonyms": [["Made in U.S.A", 1.0]],
+      "type": [["Movie", 1.0]],
+      "Movie.Related.Attribute": [["Director", 1.0]],
+      "Everipedia.Page": 
+        {"URL":"https://everipedia.org/wiki/lang_en/Made_in_U.S.A_(1966_film)/",
+         "IPFS":"QmYmzh1n3HBnNMk3dvD2gv2JKCrviPRpKXpKNfA4p2uDvP"},
+      "score": 1.0
+    }                   
+  ]
+}

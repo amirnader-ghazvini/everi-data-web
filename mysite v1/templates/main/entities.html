@@ -1,0 +1,254 @@
+<style>
+.button{
+border:solid 1px black; border-radius: 20px;	
+}
+.button2{
+border:solid 1px black; border-radius: 20px;	
+}
+.button3{
+border:solid 1px black; border-radius: 20px;	
+}
+</style>
+{% extends 'main/header.html' %}
+{% block title %}Entities{% endblock %}
+{% block content %}
+<script type="text/javascript">
+	var list = {{parsed|safe}};
+</script>
+<div class="container">
+		<div class="row" style="padding-top: 150px;">
+			<div class="col">
+				<input type="text" style="height:40px; font-size:19pt; border:solid 3px black; border-radius: 40px; width: 900px;" class="form-control" placeholder="What are you looking for?"><br><br>
+				{% for types in type %}
+					<button class="button" onclick="myFunction('{{types}}')">
+						<font color="black">
+							{{types}}
+						</font>
+					</button>
+				{% endfor %}
+				<br>
+
+				<div id="level2">
+				</div>
+
+
+
+
+				<script>
+					function createBtn(name){
+						var d=document.getElementById('level2');
+					    var btn = document.createElement("BUTTON");
+					    btn.className = "button";
+					    btn.innerHTML = name.split("_").join(" ");
+					    btn.onclick=function (){
+					    	var details=document.getElementById('details');
+					    	
+					    	var i;
+							for (i = 0; i < list.length; i++) {
+								if (list[i].str_id==name){
+									//details.innerHTML = list[i].str_id;
+									details.innerHTML='<div class="container" id="details">  		<div class="row">			<div class="col-2">Synonyms:</div>			<div class="col synonyms"></div> 		</div>  		<div class="row">   			<div class="col-2">  Type:    </div> 			<div class="col type"></div>			 		</div>			  		<div class="row">		    			 	<div class="col attrname"></div>			    			 	<div class="col attributes"></div>		  		</div>		<div class="row">		    			 	<div class="col-2 flagbtn"></div>			    			 	<div class="col-10" style="background-color: #cbced3;">			 		<div class="col-2 flagbtns" style="float:left;"></div>			 		<div class="col-6 flagurls" style="float:left;"></div>				 		<div class="col-4 image" style="float:left;"></div>					 	</div>		  		</div>		<div class="row">		    			 	<div class="col-4 eve"></div>			    			 	<div class="col-8 evecontents" style="background-color: #cbced3;">			 		<div class="col-2 evebtns" style="float:left;"></div>			 		<div class="col-10 eveurls" style="float:left;"></div>			 	</div>		  		</div>		</div>';
+
+									//for synonyms
+									var syn = document.getElementsByClassName('synonyms');
+									//details.appendChild(syn);
+									var j;
+									for (j = 0; j < list[i]['synonyms'].length; j++){
+										var synbtn = document.createElement("BUTTON");
+						    			synbtn.className = "button2";
+						    			synbtn.innerHTML = list[i]['synonyms'][j].split("_").join(" ");
+						    			synbtn.disabled = true;
+						    			syn[0].appendChild(synbtn);
+					    			}
+
+					    			//for type
+					    			var typ =  document.getElementsByClassName('type');
+									typ.innerHTML='type:';
+									//details.appendChild(typ);
+									//var j;
+									for (j = 0; j < list[i]['type'].length; j++){
+										var typbtn = document.createElement("BUTTON");
+						    			typbtn.className = "button2";
+						    			typbtn.innerHTML = list[i]['type'][j].split("_").join(" ");
+						    			typbtn.disabled = true;
+						    			typ[0].appendChild(typbtn);
+					    			}
+
+					    			//for attributes
+					    			//var attr = document.createElement('div');
+									//typ.innerHTML='type:';
+									//details.appendChild(attr);
+									//var j;
+									for (j = 0; j < list[i]['type'].length; j++){
+										var typdiv =  document.getElementsByClassName('attrname');
+										//attr.appendChild(typdiv);
+										//for type 
+										var attrbtn = document.createElement("BUTTON");
+						    			attrbtn.className = "button3";
+						    			attrbtn.innerHTML = list[i]['type'][j].split("_").join(" ");
+						    			attrbtn.disabled = true;
+						    			typdiv[0].appendChild(attrbtn);
+						    			//for related and attributes
+						    			var country = document.createElement("BUTTON");
+						    			country.className = "button3";
+						    			country.innerHTML = "Related";
+						    			country.disabled = true;
+						    			typdiv[0].appendChild(country);
+
+						    			var attributes = document.createElement("BUTTON");
+						    			attributes.className = "button3";
+						    			attributes.innerHTML = "Attributes";;
+						    			attributes.disabled = true;
+						    			typdiv[0].appendChild(attributes);
+
+						    			var br= document.createElement("br");
+						    			typdiv[0].appendChild(br);
+
+						    			//loop for attributes
+						    			var l;
+						    			var attrdiv=document.getElementsByClassName('attributes');
+					    				for (l = 0; l < list[i]['related_attr'][j].length; l++){
+					    					//alert(list[i]['related_attr'][k][l]);
+					    					//create button
+					    					var attributes_btn = document.createElement("BUTTON");
+							    			attributes_btn.className = "button2";
+							    			attributes_btn.innerHTML = list[i]['related_attr'][j][l];
+							    			attributes_btn.disabled = true;
+							    			attrdiv[0].appendChild(attributes_btn);
+
+					    				}
+					    				var br= document.createElement("br");
+					    				attrdiv[0].appendChild(br);
+					    				
+					    			}
+					    			if(list[i].flag){
+					    				//alert("has flag");
+						    			var flagdiv = document.getElementsByClassName('flagbtn');
+										//details.appendChild(flagdiv);
+										var flg = document.createElement("BUTTON");
+						    			flg.className = "button3";
+						    			flg.innerHTML = "flag";
+						    			flg.disabled = true;
+						    			flagdiv[0].appendChild(flg);
+						    			//inner div for flag
+						    			
+						    			var flagbtns = document.getElementsByClassName('flagbtns');
+						    			//flagdiv.appendChild(flagdivinner);
+						    			//flg.style.float="left";
+						    			//url button
+										var urlbtn = document.createElement("BUTTON");
+						    			urlbtn.className = "button3";
+						    			urlbtn.innerHTML = "url";
+						    			urlbtn.disabled = true;
+						    			flagbtns[0].appendChild(urlbtn);
+
+						    			//show url
+						    			var flagurls = document.getElementsByClassName('flagurls');
+						    			var url = document.createElement("BUTTON");
+						    			url.className = "button2";
+						    			url.innerHTML = "<a>".concat(list[i]['flag'],"</a>");
+						    			url.disabled = true;
+						    			flagurls[0].appendChild(url);
+
+						    			var temp = document.createElement("br");
+						    			flagdiv[0].appendChild(temp);
+
+						    			var urlt = document.createElement("BUTTON");
+						    			urlt.className = "button3";
+						    			urlt.innerHTML = "type";
+						    			urlt.disabled = true;
+						    			flagbtns[0].appendChild(urlt);
+
+						    			var img = document.createElement("BUTTON");
+						    			img.className = "button2";
+						    			img.innerHTML = "image";
+						    			img.disabled = true;
+						    			img.style.float="left";
+						    			flagurls[0].appendChild(img);
+
+						    			var imgshow = document.getElementsByClassName('image');
+						    			var image = document.createElement("img");
+						    			image.setAttribute("src",list[i]['flag']);
+						    			image.setAttribute("height", "60");
+										image.setAttribute("width", "100");
+										image.style.float="right";
+						    			imgshow[0].appendChild(image);
+					    			}
+					    				//everepedia page div
+						    			var evediv = document.getElementsByClassName('eve');
+										//details.appendChild(evediv);
+						    			
+						    			var eve = document.createElement("BUTTON");
+						    			eve.className = "button3";
+						    			eve.innerHTML = "Everepedia";
+						    			eve.disabled = true;
+						    			evediv[0].appendChild(eve);
+
+						    			var evepage = document.createElement("BUTTON");
+						    			evepage.className = "button3";
+						    			evepage.innerHTML = "Page";
+						    			evepage.disabled = true;
+						    			evediv[0].appendChild(evepage);
+
+						    			//url and ipfs for everipedia
+
+						    			var evebtns = document.getElementsByClassName('evebtns');
+
+										var urlbtn2 = document.createElement("BUTTON");
+						    			urlbtn2.className = "button3";
+						    			urlbtn2.innerHTML = "url";
+						    			urlbtn2.disabled = true;
+						    			evebtns[0].appendChild(urlbtn2);
+
+						    			var eveurls = document.getElementsByClassName('eveurls');
+						    			var url2 = document.createElement("BUTTON");
+						    			url2.className = "button2";
+						    			url2.innerHTML = list[i].everipedia.URL;
+						    			url2.disabled = true;
+						    			eveurls[0].appendChild(url2);
+
+						    			var ipfsbtn = document.createElement("BUTTON");
+						    			ipfsbtn.className = "button3";
+						    			ipfsbtn.innerHTML = "IPFS";
+						    			ipfsbtn.disabled = true;
+						    			evebtns[0].appendChild(ipfsbtn);
+
+						    			var ipfs = document.createElement("BUTTON");
+						    			ipfs.className = "button2";
+						    			ipfs.innerHTML = list[i].everipedia.IPFS;
+						    			ipfs.disabled = true;
+						    			eveurls[0].appendChild(ipfs);
+								}
+							}
+					    };              
+						d.appendChild(btn);	
+					}
+
+					function myFunction(name) {
+					    var d=document.getElementById('level2');
+					    d.innerHTML = "";
+						var i;
+						var j;
+						for (i = 0; i < list.length; i++) { 
+							for (j = 0; j < list[i]['type'].length; j++) { 
+								   if (list[i]['type'][j]==name){
+								   	//alert(list[i]['str_id'])
+								   		createBtn(list[i]['str_id'])
+								   }
+							}
+						}
+						
+					}
+				</script>
+		<br>
+				
+			</div>
+		</div>
+		<br><br>
+		<div class="div div2" id="details">
+			
+		</div> 
+		<br>
+	</div>
+
+{% endblock %}
